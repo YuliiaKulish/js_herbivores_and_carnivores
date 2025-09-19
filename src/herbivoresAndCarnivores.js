@@ -3,21 +3,15 @@
 class Animal {
   static alive = [];
 
-  constructor(name, health) {
+  constructor(name, health = 100) {
     this.name = name;
-    this.health = health || 100;
+    this.health = health;
 
     Animal.alive.push(this);
   }
 
   checkAlive() {
-    if (this.health <= 0) {
-      const index = Animal.alive.indexOf(this);
-
-      if (index > -1) {
-        Animal.alive.splice(index, 1);
-      }
-    }
+    Animal.alive = Animal.alive.filter((a) => a.health > 0);
   }
 }
 
